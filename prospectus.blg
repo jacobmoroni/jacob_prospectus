@@ -8,51 +8,54 @@ Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Database file #1: library.bib
+Warning--I didn't find a database entry for "Garratt2009"
+Warning--I didn't find a database entry for "Hornung"
+Warning--I didn't find a database entry for "WilsonDB.2015"
+Warning--I didn't find a database entry for "Leishman2013"
 -- IEEEtran.bst version 1.14 (2015/08/26) by Michael Shell.
 -- http://www.michaelshell.org/tex/ieeetran/bibtex/
 -- See the "IEEEtran_bst_HOWTO.pdf" manual for usage information.
-Warning--empty journal in WilsonDB.2015
 
 Done.
-You've used 5 entries,
+You've used 1 entry,
             4087 wiz_defined-function locations,
-            857 strings with 8358 characters,
-and the built_in function-call counts, 3516 in all, are:
-= -- 289
-> -- 84
-< -- 28
-+ -- 45
-- -- 15
-* -- 182
-:= -- 577
-add.period$ -- 10
-call.type$ -- 5
-change.case$ -- 5
-chr.to.int$ -- 63
-cite$ -- 6
-duplicate$ -- 243
-empty$ -- 249
-format.name$ -- 18
-if$ -- 783
+            839 strings with 7666 characters,
+and the built_in function-call counts, 1154 in all, are:
+= -- 89
+> -- 29
+< -- 11
++ -- 16
+- -- 5
+* -- 76
+:= -- 187
+add.period$ -- 2
+call.type$ -- 1
+change.case$ -- 1
+chr.to.int$ -- 24
+cite$ -- 1
+duplicate$ -- 69
+empty$ -- 70
+format.name$ -- 6
+if$ -- 244
 int.to.chr$ -- 0
-int.to.str$ -- 5
-missing$ -- 43
-newline$ -- 40
-num.names$ -- 5
-pop$ -- 93
+int.to.str$ -- 1
+missing$ -- 12
+newline$ -- 28
+num.names$ -- 1
+pop$ -- 22
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 2
-skip$ -- 262
+skip$ -- 79
 stack$ -- 0
-substring$ -- 151
-swap$ -- 199
-text.length$ -- 7
+substring$ -- 57
+swap$ -- 68
+text.length$ -- 3
 text.prefix$ -- 0
 top$ -- 5
-type$ -- 5
-warning$ -- 1
-while$ -- 17
-width$ -- 6
-write$ -- 72
-(There was 1 warning)
+type$ -- 1
+warning$ -- 0
+while$ -- 5
+width$ -- 2
+write$ -- 36
+(There were 4 warnings)

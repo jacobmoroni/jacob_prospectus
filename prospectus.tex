@@ -20,7 +20,7 @@
 \vspace{0.5in}
 
 % Insert your title here
-{ \LARGE \bfseries Collaborative Mapping and Navigation In GPS Denied Environments Using a Relative Framework}\\[.25in]
+{ \LARGE \bfseries Collaborative Simultaneous UAV Exploration and Mapping In GPS Denied Environments Using a Relative Framework}\\[.25in]
 
 \large
 by\\[.25 in]
@@ -98,18 +98,13 @@ This prospectus has been approved by each member of the Graduate Committee:
 \setcounter{page}{1}
 
 \section{Problem Statement}
-After a disaster such as an earthquake or fire, buildings are often left structurally unsound. Sending in a human team to inspect the building can unnecessarily put human lives at risk. This project seeks to minimize the problem by sending in a swarm of intelligent drones, able to map a building, scan for damaged structures, and identify the source of a fire to determine the level of damage and whether or not it is safe to send in humans. 
+After a disaster such as an earthquake or fire, buildings are often left structurally unsound. Sending in a human team to inspect the building can unnecessarily put human lives at risk. This project seeks to minimize the problem by sending in a swarm of intelligent unmanned aerial vehicles (UAVs), able to map a building, scan for damaged structures, and identify the source of a fire to determine the level of damage and whether or not it is safe to send in humans. 
 
-In order to be of use, the UAVs must be able to safely navigate the environment without colliding with each other or obstacles. They must also be able to collaborate in their efforts to map and scan the building to quickly deliver results to the ground station.
+Recent advances in GPS-denied navigation (cite relative nav paper) make it possible for UAVs to safely and accurately localize themselves in GPS degraded environments without colliding with obstacles, making indoor exploration and mapping possible. 
 
-The objective of this proposed research is to develop a method that
-which no one else has done 
+Because UAVs inherently have a very short battery life span, the optimization of search routes is imperative to their success in exploring and mapping an area. They must also be able to collaborate in their efforts to map and scan the building to quickly deliver results to a ground station. There are many mapping algorithms that work excellently with a single UAV, but collaborative, simultaneous mapping with UAVs is a not as developed. Leveraging multiple UAVs simultaneously mapping an area and meshing the data into a single map will greatly decrease the time it takes to survey and map an area. This will make it more feasible for UAVs to quickly survey a building in an emergency and get the information to first responders without risking human lives.
 
-%Thanks to the rapid advancement of quadrotor unmanned aircraft systems (UAS) technology, applications in maritime environments and conditions are becoming more viable.  A critical capability for nearly all UAS at sea is the ability to autonomously and accurately land on moving platforms, such as a ship deck \cite{Herisse2012}.  A variety of algorithms for shipboard landing have already been developed--many of which incorporate a downward-facing vision sensor to track some kind of marker on deck \cite{Truskin2013} \cite{Kong2014}.  A widespread weakness of current landing techniques however, is that they usually require good visibility, and relatively calm sea state to operate reliably \cite{Tan2016}. Also, the assumption is often made that the ship is a large vessel and is therefore much less agile than the UAS, and less affected by turbulent seas \cite{Ling2014}.  Given that favorable visibility and sea state may, at any time not be found on actual seas, and that the resulting challenges are further compounded should the sea vessel be small, the problem of enhancing quadrotor UAS maritime landing capabilities is motivated.  
-
-%The objective of this proposed research is not to create a new landing algorithm from scratch, but rather to understand how the integration and fusion of additional sensor measurements can enable current methods to operate reliably in a greater range of conditions and sea states.
-
-%The objective of this proposed research is not to create a new landing algorithm entirely from scratch, but rather to explore how the addition and fusion of additional sensors and measurements can enable current techniques to operate reliably for vessels of all sizes in a broader range of conditions.  Of particular interest is the ability to operate in low-light environments, and in conditions where ship deck motion (heave, roll, pitch) is relatively large.
+The objective of this proposed research is to develop a method that leverages multiple UAVs by optimally plans their search routes, and efficiently meshing data from the on-board sensors of the UAVs into a single, human-readable map. 
 
 \begin{figure}[h] %  figure placement: here, top,  bottom, or page
    \centering
@@ -120,26 +115,29 @@ which no one else has done
 
 \section{Background}
 
-%Detonation is a pressure-gain, near constant-volume combustion %process. The pulse detonation cycle consists of three main %events: fill, fire, and purge. Figure~\ref{fig:PDEcycle} %visually shows the pulse detonation cycle described below.
-
-%Current vision-based approaches to quadrotor UAS shipboard landing typically segment the maneuver into separate stages, guided by a state machine.  An outline that briefly describes each of these stages generally, is given below.   
-
-Current approaches to collaborative mapping do some things 
-
+There are many approaches to the mapping problem for UAVs which can be split up into different categories
 \begin{enumerate}
-\item this
-\item other
-\item another
+\item Sensors 
+Monocular Cameras - Conventional Cameras, Single lense. Lightweight but the least powerful
+
+Stereo Pair- Better allows for more simple 3D Reconstruction with algorithms, similar to human eyes
+
+RGBD- More integrated, output depth information along with color and IR image, newer sensors such as the D435 are lightweight and have really good range. Also, more ideal for low-light and flying with some smoke
+
+LiDAR - Doesnt return an image, but can provide very dense and accurate point clouds, better depth, but 3D LiDAR is still too heavy to fly on small UAVs 2D lidar is lighter and provides 360 data at all times, good for giving structure and 2D mapping
+ 
+\item There are different approaches to storing and using the data recieved from  sensors
+Voxels - 3d pixels used for reconstructing and representing environment in 3D space. Either very data heavy or low resolution depending on size of them, limited area representation
+Octomaps- Scale with detail, allow for more detail in detailed areas and less data usage in large open areas or closed areas
+
+Pointclouds- very dense, by default LiDAR and RGBD cameras return these, not ideal for 3D maps, but can be good for 2D ones
+
+\item Algorithms
+SLAM - Simultaneous Localization and Mapping works well, better with few landmarks (is this the only way for this to work?)
+Occupancy grid mapping- more dense, uses above items
 
 \end{enumerate}
-
-%\begin{figure}[htbp] %  figure placement: here, top, bottom, or page
-%   \centering
-%   \includegraphics[trim = 5mm 5mm 5mm 5mm,clip,width=4in]{PDEcycle.png} 
-%   \caption{The PDE cycle as presented by Rouser et. al.}
-%   \label{fig:PDEcycle}
-%\end{figure}
-
+ADD MORE RESEARCH CITATIONS HERE (Probably at least 4)
 This is where I talk about a few approaches to similar problems
 Address the questions: What have others done? Why is it important? What are the challenges?  
 
@@ -157,13 +155,15 @@ To successfully complete this proposed research, the following objectives will b
 
 \begin{itemize}
 
-	\item Build up a simulation environment that models and controls a generic quadrotor UAS, and also includes a model of a ship deck whose motion can be driven based on a given sea state.
+	\item Build up a simulation environment that models and controls generic quadrotor UAVs with appropriate sensors and an environment to be explored
 
-	\item Implement an existing vision-based landing approach in simulation to be used as a baseline for shipboard landing performance.  
+	\item Develop (or implement) Optimal planning algorithm that decides where the UAVs need to go to fill area with loop closure to mesh maps  
 
-	\item Augment the simulation by modeling additional sensor data from the UAS and/or ship that can be used to enable successful autonomous landings in a wider range of visibility and sea conditions.
+	\item implement the best approach to mapping the area that will be human readable and provide sufficient information for action
+	
+	\item Develop a way for the UAVs to share map information so that the maps can be meshed together 
 
-	\item Based on the most effective approach found through simulation, implement the solution in hardware on an actual quadrotor with onboard sensors and ship-based sensors.
+	\item Implement the solution in hardware on actual quadrotors and explore and map a GPS denied environment
 	
 	\item Perform flight test demonstrations and gather test data to showcase the effectiveness of the solution that has been developed.
 
@@ -173,7 +173,7 @@ To successfully complete this proposed research, the following objectives will b
 
 To address the problem at hand, a multi-phase approach will be used.  Research work will commence by first identifying a suitable and somewhat generic controls framework that can be used to accomplish a vision-based shipboard landing.  This framework will then be implemented and tested in simulation using MathWorks\textsuperscript{\textregistered} MATLAB and SIMULINK.  To keep things simple to begin with, a proportional integral derivative (PID) controller will be implemented for the Quadrotor UAS.  The Extended Kalman Filter (EKF) will be used to generate state estimates for the UAS, and will be augmented to take in additional measurement inputs from the vision system in order to generate estimates for the ship deck attitude and relative position.  Once functional in simulation, tests will be performed to evaluate the performance and limitations of the vision-based landing approach.
 
-The first augmentation to a standard vision-based landing method that we would like to research is operating in low-light or total darkness.  This stage of the research will require different sensor and landing marker combinations to be evaluated and tested.  Of current interest is using an infrared (IR) camera and IR markers.  In 2015 Wilson \cite{WilsonDB.2015} successfully used an IR-sensitive camera to track IR beacons along the trailing edge of a leading aircraft's wing and around the rim of a drogue that the leading aircraft was towing behind (see Figure ~\ref{fig:irmarkers}).  It was shown that the IR beacons could easily be seen and tracked by the IR vision system in a wide range of lighting conditions.  Wilson's results also showed that he was able to obtain good relative position estimates between the leading and following aircraft using the same IR markers.  Building on Wilson's findings, we would like to see how a similar IR vision and marker system could be implemented to enable autonomous shipboard landing in dark and lighted conditions. 
+The first augmentation to a standard vision-based landing method that we would like to research is operating in low-light or total darkness.  This stage of the research will require different sensor and landing marker combinations to be evaluated and tested.  Of current interest is using an infrared (IR) camera and IR markers.  In 2015 Wilson \cite{Hornung,Hornung2013} successfully used an IR-sensitive camera to track IR beacons along the trailing edge of a leading aircraft's wing and around the rim of a drogue that the leading aircraft was towing behind (see Figure ~\ref{fig:irmarkers}).  It was shown that the IR beacons could easily be seen and tracked by the IR vision system in a wide range of lighting conditions.  Wilson's results also showed that he was able to obtain good relative position estimates between the leading and following aircraft using the same IR markers.  Building on Wilson's findings, we would like to see how a similar IR vision and marker system could be implemented to enable autonomous shipboard landing in dark and lighted conditions. 
 
 \begin{figure}[t] %  figure placement: here, top,  bottom, or page
    \centering
