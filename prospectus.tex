@@ -116,29 +116,26 @@ The objective of this proposed research is to develop a method that leverages mu
 \section{Background}
 
 There are many approaches to the mapping problem for UAVs which can be split up into different categories
-\begin{enumerate}
-\item Sensors 
-Monocular Cameras - Conventional Cameras, Single lense. Lightweight but the least powerful
+\subsection{Sensors} 
+The sensors mounted on the UAVs greatly affect how they are able to map their environments. Monocualar cameras have been around the longest and are the most lightwieght, but are hardest to use in mapping a 3 dimensional environment. A newer technology that greatly increased the potential of 3D perception of cameras are stereo cameras. Made up of two cameras set up side by side, this type of camera allows for easier depth extraction from images. These cameras work much better than monocular cameras, but are still limited in their ability to reliably extract depth information from a camera. In the last several years, RGBD (RGB Depth) 3D cameras have emerged. these cameras are much better at reliably extracting depth information from the scene. Rather than just a stereo pair, RGBD cameras have a standard RGB (color) camera, a stereo pair of IR (Infrared) cameras, and an IR Projector, these all work together to produce a high resolution color image with an associatedd depth for each pixel in the image. These cameras have already had a significant impact on robotics and autonomy applications (Cite someting here). Until recently, however, these cameras have had a very large form factor compared to monocular and stereo cameras, making it hard for these cameras to be used on small UAVs. Intel, one of the industry leaders in RGBD camera technology, recently released a line of small lightweight, very capable RGBD cameras. The Intel RealSense D435 is the camera that will be used on this project.
 
-Stereo Pair- Better allows for more simple 3D Reconstruction with algorithms, similar to human eyes
-
-RGBD- More integrated, output depth information along with color and IR image, newer sensors such as the D435 are lightweight and have really good range. Also, more ideal for low-light and flying with some smoke
-
-LiDAR - Doesnt return an image, but can provide very dense and accurate point clouds, better depth, but 3D LiDAR is still too heavy to fly on small UAVs 2D lidar is lighter and provides 360 data at all times, good for giving structure and 2D mapping
+Another type of sensor that should be noted is 3D and 2D scanning LiDAR sensors. Rather than return an image, these sensors are able to return a 360 degree representation of the environment. These sensors are very powerful, especially the 3D sensors, but as of writing this, due to the size of these sensors, it is infeasible to carry one on the size of UAV that will be used on this project. There are some smaller 2D scanning LiDAR sensors that are more feasible to use and one will likely be used for obstacle avoidance for this project.
  
-\item There are different approaches to storing and using the data recieved from  sensors
+\subsection{Data Structures} 
+There are different approaches to the way the data is stored and used in mapping. 
 Voxels - 3d pixels used for reconstructing and representing environment in 3D space. Either very data heavy or low resolution depending on size of them, limited area representation
-Octomaps- Scale with detail, allow for more detail in detailed areas and less data usage in large open areas or closed areas
-
+Octomaps- Scale with detail, allow for more detail in detailed areas and less data usage in large open areas or closed areas \cite{Hornung2013}
 Pointclouds- very dense, by default LiDAR and RGBD cameras return these, not ideal for 3D maps, but can be good for 2D ones
 
-\item Algorithms
+
+\subsection{Algorithms} (maybe combine this section with data structures)
 SLAM - Simultaneous Localization and Mapping works well, better with few landmarks (is this the only way for this to work?)
 Occupancy grid mapping- more dense, uses above items
 
-\end{enumerate}
-ADD MORE RESEARCH CITATIONS HERE (Probably at least 4)
-This is where I talk about a few approaches to similar problems
+\subsection{Planning}
+
+
+%This is where I talk about a few approaches to similar problems
 Address the questions: What have others done? Why is it important? What are the challenges?  
 
 %Garratt, Pota, Lambert et al. 2009
@@ -170,6 +167,19 @@ To successfully complete this proposed research, the following objectives will b
 \end{itemize}
 
 \section{Proposed Research}
+
+To address the research, a multi-phase approach will be used. Research will commence by first setting up simulation environment in ROS Gazebo to allow for frequent testing without needing to rely on hardware every step of the way. Once the environment is set up, the project will be broken into three milestone hardware demonstrations: 
+
+\subsection{Phase 1}
+The first demonstration will be flying a single UAV in a GPS-denied environment to collect data and map the area. To complete this demonstration, an algorithm will need to be developed or implemented to plan the path in 3D space based off of a CAD model or blueprints of the area. This path will need to be able to change on the fly based on unexpected obstacles and changes from the initial plans. Although using a good odometry algorithm is essential to the success of this project, there are other students who are focusing on that aspect. 
+
+The next focus of this will be to implement a mapping algorithm on the UAV that works in a relative frame work 
+
+\subsection{Phase 2}
+The second phase of the project will be to get a single UAV to fly multiple paths in the same environment. These paths will need to be optimized to cover the desired search area and overlap enough to provide sufficient loop closure to be able to mesh the maps together in post processing. 
+
+\subsection{Phase 3}
+The third and final phase of the project will be to get multiple UAVs flying simultaneously in the same environment and meshing the maps of them into a single map. This will require more effort on the path planning to make sure the paths can be flown simultaneously, then something clever will be done to make the meshing of the maps as close to real time as possible. 
 
 To address the problem at hand, a multi-phase approach will be used.  Research work will commence by first identifying a suitable and somewhat generic controls framework that can be used to accomplish a vision-based shipboard landing.  This framework will then be implemented and tested in simulation using MathWorks\textsuperscript{\textregistered} MATLAB and SIMULINK.  To keep things simple to begin with, a proportional integral derivative (PID) controller will be implemented for the Quadrotor UAS.  The Extended Kalman Filter (EKF) will be used to generate state estimates for the UAS, and will be augmented to take in additional measurement inputs from the vision system in order to generate estimates for the ship deck attitude and relative position.  Once functional in simulation, tests will be performed to evaluate the performance and limitations of the vision-based landing approach.
 
