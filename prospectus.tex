@@ -100,7 +100,7 @@ This prospectus has been approved by each member of the Graduate Committee:
 \section{Problem Statement}
 After a disaster such as an earthquake or fire, buildings are often left structurally unsound. Sending in a human team to inspect the building can unnecessarily put human lives at risk. This project seeks to minimize the problem by sending in a swarm of intelligent unmanned aerial vehicles (UAVs), able to map a building, scan for damaged structures, and identify the source of a fire to determine the level of damage and whether or not it is safe to send in humans. 
 
-Recent advances in GPS-denied navigation (cite relative nav paper) make it possible for UAVs to safely and accurately localize themselves in GPS degraded environments without colliding with obstacles, making indoor exploration and mapping possible. 
+Recent advances in GPS-denied navigation \cite{Wheeler2017} make it possible for UAVs to safely and accurately localize themselves in GPS degraded environments without colliding with obstacles, making indoor exploration and mapping possible. 
 
 Because UAVs inherently have a very short battery life span, the optimization of search routes is imperative to their success in exploring and mapping an area. They must also be able to collaborate in their efforts to map and scan the building to quickly deliver results to a ground station. There are many mapping algorithms that work excellently with a single UAV, but collaborative, simultaneous mapping with UAVs is a not as developed. Leveraging multiple UAVs simultaneously mapping an area and meshing the data into a single map will greatly decrease the time it takes to survey and map an area. This will make it more feasible for UAVs to quickly survey a building in an emergency and get the information to first responders without risking human lives.
 
@@ -108,21 +108,22 @@ The objective of this proposed research is to develop a method that leverages mu
 
 \begin{figure}[h] %  figure placement: here, top,  bottom, or page
    \centering
-   \includegraphics[trim = 0mm 0mm 0mm 0mm,clip,width=3in]{ship_motions.png}
-   \caption{Definitions of reference frames and ship motions (surge, sway, heave, roll, pitch and yaw)}
-   \label{fig:shipmotions}
+   \includegraphics[trim = 0mm 0mm 0mm 0mm,clip,width=3in]{survey_drone_illustration.png}
+   \caption{Survey UAVs deploy from Sentinel UAV to map a GPS-Denied area}
+   \label{fig:sentinel_survey}
 \end{figure}
 
 \section{Background}
 
 There are many approaches to the mapping problem for UAVs which can be split up into different categories
+
 \subsection{Sensors} 
 The sensors mounted on the UAVs greatly affect how they are able to map their environments. Monocualar cameras have been around the longest and are the most lightwieght, but are hardest to use in mapping a 3 dimensional environment. A newer technology that greatly increased the potential of 3D perception of cameras are stereo cameras. Made up of two cameras set up side by side, this type of camera allows for easier depth extraction from images. These cameras work much better than monocular cameras, but are still limited in their ability to reliably extract depth information from a camera. In the last several years, RGBD (RGB Depth) 3D cameras have emerged. these cameras are much better at reliably extracting depth information from the scene. Rather than just a stereo pair, RGBD cameras have a standard RGB (color) camera, a stereo pair of IR (Infrared) cameras, and an IR Projector, these all work together to produce a high resolution color image with an associatedd depth for each pixel in the image. These cameras have already had a significant impact on robotics and autonomy applications (Cite someting here). Until recently, however, these cameras have had a very large form factor compared to monocular and stereo cameras, making it hard for these cameras to be used on small UAVs. Intel, one of the industry leaders in RGBD camera technology, recently released a line of small lightweight, very capable RGBD cameras. The Intel RealSense D435 is the camera that will be used on this project.
 
 Another type of sensor that should be noted is 3D and 2D scanning LiDAR sensors. Rather than return an image, these sensors are able to return a 360 degree representation of the environment. These sensors are very powerful, especially the 3D sensors, but as of writing this, due to the size of these sensors, it is infeasible to carry one on the size of UAV that will be used on this project. There are some smaller 2D scanning LiDAR sensors that are more feasible to use and one will likely be used for obstacle avoidance for this project.
  
 \subsection{Data Structures} 
-There are different approaches to the way the data is stored and used in mapping. 
+There are different approaches to the way mapping data is stored and used in mapping. 
 Voxels - 3d pixels used for reconstructing and representing environment in 3D space. Either very data heavy or low resolution depending on size of them, limited area representation
 Octomaps- Scale with detail, allow for more detail in detailed areas and less data usage in large open areas or closed areas \cite{Hornung2013}
 Pointclouds- very dense, by default LiDAR and RGBD cameras return these, not ideal for 3D maps, but can be good for 2D ones
@@ -133,17 +134,11 @@ SLAM - Simultaneous Localization and Mapping works well, better with few landmar
 Occupancy grid mapping- more dense, uses above items
 
 \subsection{Planning}
+In 2007 Bryson et. al. \cite{Bryson2007} demonstrated the ability to plan multiple flight paths and navigate an area using multiple UAVs flying concurrently using an EKF-SLAM Algorithm. This research was successful in having multiple agents find the same landmarks and create a single landmark map used to localize all UAVs. This research was done outdoors, not in a GPS Denied environment and it was a landmark-based EKF-SLAM so the resulting map is nothing more than landmark locations, making the map not very useful to for first responders. 
+ 
+In 2012 Micheal et. al. \cite{Michael2012} tackled some of the collaborative mapping problem by using ground and aerial robots to collaboratively map an earthquake damaged building. They used a LiDAR scanner and an RGB-D camera and mapped the building using a voxel grid. They were able to successfully merge the maps into a single well structured map. Their results were lacking simultaneous mapping and a high enough resolution on their maps to be used effectively by search and rescue teams.   
 
-
-%This is where I talk about a few approaches to similar problems
-Address the questions: What have others done? Why is it important? What are the challenges?  
-
-%Garratt, Pota, Lambert et al. 2009
-Example looks like this In 2009, Garratt et. al. \cite{Garratt2009} detailed a shipboard landing method for autonomous collective pitch helicopters that used a digital IR camera and a laser range finder pointed at a spinning mirror to supply data for estimating the relative position and motion of the ship deck.  Flight test results showed that their system was able to estimate the relative roll and pitch angles, as well as height distance between the helicopter and the simulated ship deck to a high degree of accuracy.  Their results however only demonstrated the capabilities of their measurement and estimation system and did not demonstrate the actual ability to execute a successful landing maneuver.  
-
-%probably need to add some more background references here
-
-From this brief survey of the current research, it can be seen that although various and significant contributions have been made in the field of autonomous shipboard landing, there is still great opportunity for continued research.  The research I would like to propose I believe would help to move some of the current research from the simulation and simplified use case, to real-world application.
+From this brief survey of the current research, it can be seen that although various and significant contributions have been made in the field of collaborative planning and mapping, there is still great opportunity for continued research.  The research I would like to propose I believe would help to move some of the current research from the simulation and simplified use case, to real-world application.
 
 \section{Research Objectives}
 
@@ -154,13 +149,13 @@ To successfully complete this proposed research, the following objectives will b
 
 	\item Build up a simulation environment that models and controls generic quadrotor UAVs with appropriate sensors and an environment to be explored
 
-	\item Develop (or implement) Optimal planning algorithm that decides where the UAVs need to go to fill area with loop closure to mesh maps  
+	\item Develop (or implement) Optimal planning algorithm that determines the UAV flight path to successfully map full search area with loop closure to mesh maps  
 
-	\item implement the best approach to mapping the area that will be human readable and provide sufficient information for action
+	\item Determine and implement the best approach to mapping the area that will be human readable and provide sufficient information for action
 	
 	\item Develop a way for the UAVs to share map information so that the maps can be meshed together 
 
-	\item Implement the solution in hardware on actual quadrotors and explore and map a GPS denied environment
+	\item Implement the solution in hardware on quadrotor UAVs to simultaneously explore and map a GPS denied environment
 	
 	\item Perform flight test demonstrations and gather test data to showcase the effectiveness of the solution that has been developed.
 
@@ -171,19 +166,15 @@ To successfully complete this proposed research, the following objectives will b
 To address the research, a multi-phase approach will be used. Research will commence by first setting up simulation environment in ROS Gazebo to allow for frequent testing without needing to rely on hardware every step of the way. Once the environment is set up, the project will be broken into three milestone hardware demonstrations: 
 
 \subsection{Phase 1}
-The first demonstration will be flying a single UAV in a GPS-denied environment to collect data and map the area. To complete this demonstration, an algorithm will need to be developed or implemented to plan the path in 3D space based off of a CAD model or blueprints of the area. This path will need to be able to change on the fly based on unexpected obstacles and changes from the initial plans. Although using a good odometry algorithm is essential to the success of this project, there are other students who are focusing on that aspect. 
+The first demonstration will be flying a single UAV in a GPS-denied environment to collect data and map the area. To complete this demonstration, an algorithm will need to be developed or implemented to plan the path in 3D space based off of a CAD model or blueprints of the search area. This path will be adjusted when unexpected obstacles and changes from the initial plans are detected. Although using a good odometry algorithm is essential to the success of this project, there are other students who are focusing on that aspect. 
 
-The next focus of this will be to implement a mapping algorithm on the UAV that works in a relative frame work 
+Along with this phase, research will be done to determine the best mapping algorithm for this scenario. It will then be implemented on the UAV to map the environment. 
 
 \subsection{Phase 2}
-The second phase of the project will be to get a single UAV to fly multiple paths in the same environment. These paths will need to be optimized to cover the desired search area and overlap enough to provide sufficient loop closure to be able to mesh the maps together in post processing. 
+The second phase of the project will be to get a single UAV to fly multiple paths in the same environment. These paths will need to be optimized such that they cover the desired search area and overlap enough to provide sufficient loop closure to mesh the maps together in post processing. This is where the bulk of the unique research will be done. As mentioned earlier, there has not been significant research done in the area of meshing maps from multiple UAVs into a single map. 
 
 \subsection{Phase 3}
-The third and final phase of the project will be to get multiple UAVs flying simultaneously in the same environment and meshing the maps of them into a single map. This will require more effort on the path planning to make sure the paths can be flown simultaneously, then something clever will be done to make the meshing of the maps as close to real time as possible. 
-
-To address the problem at hand, a multi-phase approach will be used.  Research work will commence by first identifying a suitable and somewhat generic controls framework that can be used to accomplish a vision-based shipboard landing.  This framework will then be implemented and tested in simulation using MathWorks\textsuperscript{\textregistered} MATLAB and SIMULINK.  To keep things simple to begin with, a proportional integral derivative (PID) controller will be implemented for the Quadrotor UAS.  The Extended Kalman Filter (EKF) will be used to generate state estimates for the UAS, and will be augmented to take in additional measurement inputs from the vision system in order to generate estimates for the ship deck attitude and relative position.  Once functional in simulation, tests will be performed to evaluate the performance and limitations of the vision-based landing approach.
-
-The first augmentation to a standard vision-based landing method that we would like to research is operating in low-light or total darkness.  This stage of the research will require different sensor and landing marker combinations to be evaluated and tested.  Of current interest is using an infrared (IR) camera and IR markers.  In 2015 Wilson \cite{Hornung,Hornung2013} successfully used an IR-sensitive camera to track IR beacons along the trailing edge of a leading aircraft's wing and around the rim of a drogue that the leading aircraft was towing behind (see Figure ~\ref{fig:irmarkers}).  It was shown that the IR beacons could easily be seen and tracked by the IR vision system in a wide range of lighting conditions.  Wilson's results also showed that he was able to obtain good relative position estimates between the leading and following aircraft using the same IR markers.  Building on Wilson's findings, we would like to see how a similar IR vision and marker system could be implemented to enable autonomous shipboard landing in dark and lighted conditions. 
+The third and final phase of the project will be to get multiple UAVs flying simultaneously in the same environment and meshing the maps of them into a single map. This will require more effort on the path planning to make sure the paths can be flown simultaneously, then something clever will be done to make the map meshing as close to real time as possible. 
 
 \begin{figure}[t] %  figure placement: here, top,  bottom, or page
    \centering

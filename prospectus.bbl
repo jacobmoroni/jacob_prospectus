@@ -21,12 +21,38 @@
 \providecommand{\BIBdecl}{\relax}
 \BIBdecl
 
+\bibitem{Wheeler2017}
+\BIBentryALTinterwordspacing
+D.~Wheeler, D.~Koch, J.~Jackson, G.~Ellingson, P.~Nyholm, T.~McLain, and
+  R.~Beard, ``{Relative Navigation of Autonomous GPS-Degraded Micro Air
+  Vehicles},'' \emph{All Faculty Publications}, aug 2017. [Online]. Available:
+  \url{https://scholarsarchive.byu.edu/facpub/1962}
+\BIBentrySTDinterwordspacing
+
 \bibitem{Hornung2013}
 \BIBentryALTinterwordspacing
 A.~Hornung, K.~M. Wurm, M.~Bennewitz, C.~Stachniss, and W.~Burgard, ``{OctoMap:
   an efficient probabilistic 3D mapping framework based on octrees},''
   \emph{Autonomous Robots}, vol.~34, no.~3, pp. 189--206, apr 2013. [Online].
   Available: \url{http://link.springer.com/10.1007/s10514-012-9321-0}
+\BIBentrySTDinterwordspacing
+
+\bibitem{Bryson2007}
+\BIBentryALTinterwordspacing
+M.~Bryson and S.~Sukkarieh, ``{Co-operative Localisation and Mapping for
+  Multiple UAVs in Unknown Environments},'' in \emph{2007 IEEE Aerospace
+  Conference}.\hskip 1em plus 0.5em minus 0.4em\relax IEEE, 2007, pp. 1--12.
+  [Online]. Available: \url{http://ieeexplore.ieee.org/document/4161346/}
+\BIBentrySTDinterwordspacing
+
+\bibitem{Michael2012}
+\BIBentryALTinterwordspacing
+N.~Michael, S.~Shen, K.~Mohta, Y.~Mulgaonkar, V.~Kumar, K.~Nagatani, Y.~Okada,
+  S.~Kiribayashi, K.~Otake, K.~Yoshida, K.~Ohno, E.~Takeuchi, and S.~Tadokoro,
+  ``{Collaborative mapping of an earthquake-damaged building via ground and
+  aerial robots},'' \emph{Journal of Field Robotics}, vol.~29, no.~5, pp.
+  832--841, sep 2012. [Online]. Available:
+  \url{http://doi.wiley.com/10.1002/rob.21436}
 \BIBentrySTDinterwordspacing
 
 \end{thebibliography}
