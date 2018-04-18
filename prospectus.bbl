@@ -29,16 +29,6 @@ D.~Wheeler, D.~Koch, J.~Jackson, G.~Ellingson, P.~Nyholm, T.~McLain, and
   \url{https://scholarsarchive.byu.edu/facpub/1962}
 \BIBentrySTDinterwordspacing
 
-\bibitem{Henry2010}
-\BIBentryALTinterwordspacing
-P.~Henry, M.~Krainin, E.~Herbst, X.~Ren, and D.~Fox, ``{RGB-DMapping: Using
-  Depth Cameras for Dense 3D Modeling of Indoor Environments},'' \emph{{12th
-  International Symposium on Experimental Robotics (ISER{\}}}, p.~1, 2010.
-  [Online]. Available:
-  \url{http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.226.91{\&}rep=rep1{\&}type=pdf
-  http://link.springer.com/10.1007/978-3-642-28572-1}
-\BIBentrySTDinterwordspacing
-
 \bibitem{Hornung2013}
 \BIBentryALTinterwordspacing
 A.~Hornung, K.~M. Wurm, M.~Bennewitz, C.~Stachniss, and W.~Burgard, ``{OctoMap:
