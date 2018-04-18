@@ -29,12 +29,39 @@ D.~Wheeler, D.~Koch, J.~Jackson, G.~Ellingson, P.~Nyholm, T.~McLain, and
   \url{https://scholarsarchive.byu.edu/facpub/1962}
 \BIBentrySTDinterwordspacing
 
+\bibitem{Henry2010}
+\BIBentryALTinterwordspacing
+P.~Henry, M.~Krainin, E.~Herbst, X.~Ren, and D.~Fox, ``{RGB-DMapping: Using
+  Depth Cameras for Dense 3D Modeling of Indoor Environments},'' \emph{{12th
+  International Symposium on Experimental Robotics (ISER{\}}}, p.~1, 2010.
+  [Online]. Available:
+  \url{http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.226.91{\&}rep=rep1{\&}type=pdf
+  http://link.springer.com/10.1007/978-3-642-28572-1}
+\BIBentrySTDinterwordspacing
+
 \bibitem{Hornung2013}
 \BIBentryALTinterwordspacing
 A.~Hornung, K.~M. Wurm, M.~Bennewitz, C.~Stachniss, and W.~Burgard, ``{OctoMap:
   an efficient probabilistic 3D mapping framework based on octrees},''
   \emph{Autonomous Robots}, vol.~34, no.~3, pp. 189--206, apr 2013. [Online].
   Available: \url{http://link.springer.com/10.1007/s10514-012-9321-0}
+\BIBentrySTDinterwordspacing
+
+\bibitem{Labbe2011a}
+\BIBentryALTinterwordspacing
+M.~Labbe and F.~Michaud, ``{Memory management for real-time appearance-based
+  loop closure detection},'' in \emph{2011 IEEE/RSJ International Conference on
+  Intelligent Robots and Systems}.\hskip 1em plus 0.5em minus 0.4em\relax IEEE,
+  sep 2011, pp. 1271--1276. [Online]. Available:
+  \url{http://ieeexplore.ieee.org/document/6094602/}
+\BIBentrySTDinterwordspacing
+
+\bibitem{Labbe2013}
+\BIBentryALTinterwordspacing
+------, ``{Appearance-based loop closure detection for online large-scale and
+  long-term operation},'' \emph{IEEE Transactions on Robotics}, vol.~29, no.~3,
+  pp. 734--745, 2013. [Online]. Available:
+  \url{https://introlab.3it.usherbrooke.ca/mediawiki-introlab/images/b/bc/TRO2013.pdf}
 \BIBentrySTDinterwordspacing
 
 \bibitem{Bryson2007}

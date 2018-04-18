@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.3.12)  21 MAR 2018 17:01
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.2.13)  18 APR 2018 16:55
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -284,57 +284,88 @@ File: ./figures/survey_drone_illustration.png Graphic file (type png)
 
 <use ./figures/survey_drone_illustration.png>
 Package pdftex.def Info: ./figures/survey_drone_illustration.png used on input 
-line 111.
+line 105.
 (pdftex.def)             Requested size: 216.81pt x 162.60416pt.
- [1 <./figures/survey_drone_illustration.png>] [2]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 150.
+ [1 <./figures/survey_drone_illustration.png>]
 
- (/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
+LaTeX Warning: Citation `Hornung2013' on page 2 undefined on input line 130.
+
+
+LaTeX Warning: Citation `Labbe2011a' on page 2 undefined on input line 133.
+
+
+LaTeX Warning: Citation `Labbe2013' on page 2 undefined on input line 133.
+
+[2]
+
+LaTeX Warning: Citation `Bryson2007' on page 3 undefined on input line 136.
+
+
+LaTeX Warning: Citation `Michael2012' on page 3 undefined on input line 138.
+
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 149.
+
+(/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 150.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 149.
+ [3] [4] [5]
+(./prospectus.bbl)
+Runaway argument?
+{{12th International Symposium on Experimental Robotics (ISER{\}}}, p\ETC.
+! File ended while scanning use of \emph .
+<inserted text> 
+                \par 
+l.213 \bibliography{library.bib}
+                                
+I suspect you have forgotten a `}', causing me
+to read past where you wanted me to stop.
+I'll try to recover; but if the error is serious,
+you'd better type `E' or `X' now and fix your file.
 
-[3] <./figures/ir_drogue.png, id=30, 816.04875pt x 228.855pt>
-File: ./figures/ir_drogue.png Graphic file (type png)
 
-<use ./figures/ir_drogue.png>
-Package pdftex.def Info: ./figures/ir_drogue.png used on input line 181.
-(pdftex.def)             Requested size: 433.62pt x 121.60684pt.
+! LaTeX Error: \begin{thebibliography} on input line 2 ended by \end{document}.
 
 
-LaTeX Warning: Citation `WilsonDB.2015' on page 4 undefined on input line 182.
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.216 \end{document}
+                    
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
 
-
-LaTeX Warning: Citation `WilsonDB.2015' on page 4 undefined on input line 182.
-
-
-LaTeX Warning: Citation `Leishman2013' on page 4 undefined on input line 186.
-
-[4 <./figures/ir_drogue.png>] [5] (./prospectus.bbl) [6] (./prospectus.aux)
+[6] (./prospectus.aux)
 
 LaTeX Warning: There were undefined references.
 
- ) 
+ )
+(\end occurred inside a group at level 1)
+
+### semi simple group (level 1) entered at line 2 (\begingroup)
+### bottom level 
 Here is how much of TeX's memory you used:
- 3697 strings out of 493029
- 55622 string characters out of 6136234
- 127705 words of memory out of 5000000
- 7195 multiletter control sequences out of 15000+600000
+ 3692 strings out of 493029
+ 55488 string characters out of 6136234
+ 127692 words of memory out of 5000000
+ 7191 multiletter control sequences out of 15000+600000
  10129 words of font info for 36 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 42i,5n,40p,1526b,333s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us
-r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/shar
-e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texli
-ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texm
-f-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/
-fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/
-type1/public/amsfonts/cm/cmti12.pfb>
-Output written on prospectus.pdf (8 pages, 524794 bytes).
+ 42i,5n,39p,1550b,333s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/c
+mbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.
+pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></u
+sr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/shar
+e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texli
+ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/tex
+mf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb>
+Output written on prospectus.pdf (8 pages, 268731 bytes).
 PDF statistics:
- 68 PDF objects out of 1000 (max. 8388607)
- 44 compressed objects within 1 object stream
+ 65 PDF objects out of 1000 (max. 8388607)
+ 43 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 28 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 17 words of extra memory for PDF output out of 10000 (max. 10000000)
 
