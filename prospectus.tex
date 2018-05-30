@@ -98,7 +98,7 @@ This prospectus has been approved by each member of the Graduate Committee:
 \setcounter{page}{1}
 
 \section{Problem Statement}
-After a disaster such as an earthquake or fire, buildings are often left structurally unsound. Sending in a human team to inspect the building can unnecessarily put human lives at risk. This project seeks to minimize the problem by sending in a swarm of intelligent unmanned aerial vehicles (UAVs) deployed from a larger, tethered UAV shown in Figure \ref{fig:sentinel_survey}. The swarm is able to map a building, scan for damaged structures, and identify the source of a fire to determine the level of damage and whether or not it is safe to send in first responders.
+After a disaster such as an earthquake or fire, buildings are often left structurally unsound. Sending in a human team to inspect the building can unnecessarily put human lives at risk. This project seeks to minimize the problem by sending in a swarm of intelligent unmanned aerial vehicles (UAVs) deployed from a larger, tethered UAV shown in Figure \ref{fig:sentinel_survey}. The swarm is able to map a building, scan for damaged structures, and identify the source of a fire to determine the level of damage and whether it is safe to send in first responders.
 
 \begin{figure}[h] %  figure placement: here, top,  bottom, or page
 	\centering
@@ -107,56 +107,61 @@ After a disaster such as an earthquake or fire, buildings are often left structu
 	\label{fig:sentinel_survey}
 \end{figure}
 
-Recent advances in GPS-denied navigation \cite{Wheeler2017} make it possible for UAVs to safely and accurately localize themselves in GPS degraded environments without colliding with obstacles, making indoor exploration and mapping possible. 
+Recent advances in GPS-denied navigation \cite{Wheeler2017} make it possible for UAVs to safely and accurately localize themselves in GPS-degraded environments without colliding with obstacles, making indoor exploration and mapping possible. 
 
-Because UAVs inherently have a very short battery life span, the optimization of search routes is imperative to their success in exploring and mapping an area. They must also be able to collaborate in their efforts to map and scan the building to quickly deliver results to a ground station. There are many mapping algorithms that work well with a single UAV, but collaborative, simultaneous mapping with UAVs is a not as developed. Leveraging multiple UAVs simultaneously mapping an area and meshing the data into a single map will greatly decrease the time it takes to survey and map an area. This will make it more feasible for UAVs to quickly survey a building in an emergency and get the information to first responders without risking human lives.
+Small multirotor UAVs are better equipped for indoor flight than fixed wing UAVs because of their ability to hover in place and and take off and land vertically. One inherent issue of multirotor UAV's, especially small ones, is that they have a limited flight time due to their smaller payload capacities. Because of their limited flight time, the optimization of search routes can greatly improve their success in exploring and mapping an area. They must also be able to collaborate in their efforts to map and scan a building to quickly deliver results to a ground station. There are many mapping algorithms that work well with a single UAV, but the concept of collaborative, simultaneous mapping with UAVs is a not as developed. Leveraging multiple UAVs simultaneously mapping an area and meshing the data into a single map will greatly decrease the time it takes to survey and map an environment. This will make it more feasible for UAVs to quickly survey a building in an emergency and get the information to first responders without risking human lives.
 
-The objective of this proposed research is to develop a method that leverages multiple UAVs by optimally planning their search routes, and efficiently meshing data from the on-board sensors of the UAVs into a single, human-readable map. 
+The objective of this proposed research is to develop a method that leverages multiple small multirotor UAVs by optimally planning their search routes, and efficiently meshing data from the on-board sensors of the UAVs into a single, human-readable map. 
 
 
 
 \section{Background}
 
-There are many approaches to the mapping problem for UAVs which can be split up into different categories
+There are many components to the mapping problem for UAVs which are integral to its solution: the sensors used to collect the data for maps, the algorithms and data structures used to generate and display maps, and the planning used to navigate through maps.
 
 \subsection{Sensors} 
-The sensors mounted on the UAVs greatly affect how they are able to map their environments. Monocualar cameras have been around the longest and are the most lightweight, but are hardest to use in mapping a 3 dimensional environment. A newer technology that greatly increased the potential of 3D perception are stereo cameras. Made up of two cameras set up side by side, this type of camera allows for easier depth extraction from images. These cameras work much better than monocular cameras, but are still limited in their ability to reliably extract depth information from a camera. In the last several years, RGB-D (RGB Depth) 3D cameras have emerged. these cameras are much better at reliably extracting depth information from the scene. Rather than just a stereo pair, RGB-D cameras have a standard RGB (color) camera, a stereo pair of IR (Infrared) cameras, and an IR Projector, these all work together to produce a high resolution color image with an associated depth for each pixel in the image. These cameras have already had a significant impact on robotics and autonomy applications \cite{Henry2010}. Until recently, however, these cameras have had a very large form factor compared to monocular and stereo cameras and had very limited depth range, making it hard for them to be used on small UAVs. Intel, one of the industry leaders in RGB-D camera technology, recently released a line of small lightweight, very capable RGB-D cameras. The Intel RealSense D435 is the camera that will be used on this project.
+The sensors mounted on the UAVs greatly affect how they are able to map their environments. Monocular cameras are the most lightweight, but are the hardest to use in mapping a three-dimensional environment. Without other sensors, they are unable to create a map with an absolute scale. A newer technology that improved the potential of 3D perception is the stereo camera which is made up of two cameras side by side with a known offset. The known offset between the cameras makes it possible to extract depth information from its images. Stereo cameras are able to create a map with an absolute scale, but are still limited in their ability to reliably extract depth information from the environment. In the last several years, RGB-D (RGB Depth) 3D cameras have emerged. Rather than just using a color stereo pair like standard stereo cameras, RGB-D cameras have a RGB (color) camera, a stereo pair of IR (Infrared) cameras, and an IR projector. The IR projector projects a pattern onto the environment that the IR cameras use to get more accurate depth readings than a standard stereo camera. The depth information is paired with the color camera to produce a high resolution color image with an associated depth for each pixel in the image.  These cameras have already had a significant impact on robotics and autonomy applications \cite{Henry2010}. Until recently, however, these cameras have had a large form factor compared to monocular and stereo cameras, did not work outdoors, and their depth range was severely limited, making it hard for them to be used on small UAVs. Intel, one of the industry leaders in RGB-D camera technology, recently released a line of small lightweight RGB-D cameras that work both indoors and outdoors with much better range. The Intel RealSense D435 is the camera that will be used on this project.
 
-Another type of sensor that should be noted is 3D and 2D scanning LiDAR sensors. Rather than return an image, these sensors are able to return a 360 degree representation of the environment. These sensors are very powerful, especially the 3D sensors, but as of writing this, due to the size of these sensors, it is infeasible to carry one on the size of UAV that will be used on this project. There are some smaller 2D scanning LiDAR sensors that are more feasible to use and one will be used for obstacle avoidance in this project.
+Another type of sensor that should be noted is a scanning LiDAR sensor. Rather than return an image of the environment, these sensors are able to return a 360 degree representation of the environment with an order of magnitude greater range than RGB-D cameras. There are two types of scanning LiDAR sensors, 3D sensors that use multiple beams to generate a 3 dimensional representation of their environment, and 2D sensors, which use a single beam to generate a planar representation of their environment. These sensors are powerful, especially the 3D sensors, but as of writing this, due to the size and weight of the 3D LiDAR sensors, it is infeasible to carry one on the size of UAV that will be used on this project. There are some smaller and lighter 2D scanning LiDAR sensors that are more feasible to use and one will be used for obstacle avoidance and to improve long range measurements in this project.
  
 \subsection{Data Structures and Algorithms} 
-There are different approaches to the way data is stored and used in mapping applications. For 3D mapping. one common approach is to use Simultaneous Localization and Mapping (SLAM). There are several different types of SLAM for various data structures and purposes. When generating maps, Occupancy Grid Mapping is often used to generate maps. These maps can be represented in different ways:
-Voxels, which are 3D pixels used for reconstructing and representing an environment in 3D space. These are either very data heavy or low resolution depending on size of them which makes it so that they can only feasibly represent a limited area
-Octomaps, a newer representation are like voxels, but are able to scale with detail. This allows for more detail in detailed areas but less data heavy in large open or closed areas \cite{Hornung2013}.
-Pointclouds are a very dense representation of 3D data. They can provide the most detail, but are not very computationally efficient, especially when adjusting the map for loop closure. By default, LiDAR sensors and RGB-D cameras return this data structure, but often these are converted to voxels or octomaps to make the map less data heavy.
+There are different approaches to the way data is stored and used in generating 3D maps. Most approaches use a form of simultaneous localization and mapping (SLAM). There are several different types of SLAM for various data structures and purposes and occupancy grid mapping is a common technique used when generating dense maps of the environment. These maps can be represented in different ways:
+Voxels, which are 3D pixels used for reconstructing and representing an environment in 3D space, are generated using 3D occupancy grid mapping. These are either data heavy or low resolution depending on their size which makes it so that they can only feasibly represent a limited area.
+Octomaps, a newer representation, are like voxels but are able to scale with detail. This allows for more resolution in detailed areas, but because of the lower resolution in large occupied or unoccupied areas they are less data heavy than a standard voxel grid and can represent much larger areas \cite{Hornung2013}.
+Pointclouds are a dense representation of 3D data. They can provide the most detail and resolution, but do not represent vacant and occupied space as well as octomaps, so to plan through 3D space, octomaps are a better representation of the environment. By default, LiDAR sensors and RGB-D cameras return pointclouds, but often these are converted to voxels or octomaps to make the map less data heavy.
+Figure \ref{fig:voxel} below shows a comparison between a pointcloud representation and an octomap representation of a scene with an image of the scene as a reference.
 
-Over the last few years, 3D mapping technology has greatly improved. Labbe et al. \cite{Labbe2011a} \cite{Labbe2013} has developed a very capable ROS Package designed for creating 3D maps from RGB-D Cameras. This package simplifies the problem of creating reliable 3D maps, but currently lacks the framework to build maps with multiple UAVs simultaneously.
+\begin{figure}[h] %  figure placement: here, top,  bottom, or page
+	\centering
+	\includegraphics[trim = 0mm 0mm 0mm 0mm,clip,width=6.5in]{voxel.png}
+	\caption{Comparison between an image(top), an octomap(left), and a pointcloud(right)}
+	\label{fig:voxel}
+\end{figure}
+
+Over the last few years, 3D mapping technology has greatly improved. Labbe et al. \cite{Labbe2011a} \cite{Labbe2013} has developed a capable ROS package called RTAB-Map designed for creating 3D maps from RGB-D cameras. This package simplifies the problem of creating reliable 3D maps and is able to generate both point clouds and octomaps, but currently lacks the framework to build maps with multiple UAVs simultaneously.
 
 \subsection{Planning}
-In 2007 Bryson et al. \cite{Bryson2007} demonstrated the ability to plan multiple flight paths and navigate an area using multiple UAVs flying concurrently using an EKF-SLAM (Extended Kalman Filter SLAM) Algorithm. This research was successful in having multiple agents find the same landmarks and create a single landmark map used to localize all UAVs. This research was done outdoors, not in a GPS Denied environment and it was a landmark-based EKF-SLAM so the resulting map is only the landmark locations, making the map very sparse and not very useful to for first responders. 
+In 2007 Bryson et al. \cite{Bryson2007} demonstrated the ability to plan multiple flight paths and navigate an area using multiple UAVs flying concurrently using an EKF-SLAM (extended Kalman filter SLAM) algorithm. This research was successful in having multiple agents find the same landmarks and create a single landmark map used to localize all UAVs. This research was done outdoors, not in a GPS-denied environment, and it was a landmark-based EKF-SLAM. The resulting map is only the landmark locations, generating only a sparse representation of the environment. This project aims to generate a dense, detailed representation of the environment that will be useful to first responders.
  
 In 2012 Micheal et al. \cite{Michael2012} tackled some of the collaborative mapping problem by using ground and aerial robots to collaboratively map an earthquake damaged building. They used a LiDAR scanner and an RGB-D camera and mapped the building using a voxel grid. They were able to successfully merge the maps into a single well structured map. Their results were lacking simultaneous mapping and a high enough resolution on their maps to be used effectively by search and rescue teams.   
 
-From this brief survey of the current research, it can be seen that although various and significant contributions have been made in the field of collaborative planning and mapping, there is still great opportunity for continued research.  The research I would like to propose I believe would help to move some of the current research from the single UAV platforms to intelligent swarm applications.
+More recently in 2013, Zou et al. \cite{Zou2013} performed collaborative simultaneous SLAM with multiple handheld cameras to generate a single map and localize all agents on the map. In 2017, Schmuck et al. \cite{Schmuck2017} implemented monocular SLAM using multiple UAVs with downward facing cameras flying simultaneously to create a single shared map. Both of these instances successfully showed that it is possible for multiple agents to simultaneously generate a shared map. This research will be a good stepping stone, but it is different than the goal of this research project in that the map produced by the agents was sparse and would not be useful to first responders assessing the situation. 
+
+From this brief survey of the current research, it can be seen that although various and significant contributions have been made in the field of collaborative planning and mapping, there is still great opportunity for continued research.  The research I would like to propose would help to move some of the current research from the single UAV platforms to intelligent swarm applications, and help make the maps generated by these intelligent swarms more usable by humans.
 
 \section{Research Objectives}
 
-To successfully complete this proposed research, the following objectives will be accomplished:
+In completing the proposed research, the following objectives will be accomplished:
 
 
 \begin{itemize}
-
-	\item Build up a simulation environment that models and controls generic quadrotor UAVs with appropriate sensors and an environment to be explored
 	
-	\item Determine and implement the best approach to mapping the area that will be human readable and provide sufficient information for action
+	\item Determine and implement a functional approach to mapping an environment that will be human readable and provide sufficient information for action
 
-	\item Develop (or implement) Optimal planning algorithm that determines the UAV flight path to successfully map full search area with loop closure to mesh maps  
-	
-	\item Develop a way for the UAVs to share map information so that the maps can be meshed together 
+	\item Develop (or implement) an efficient planning algorithm for a team of UAVs that determines the UAV flight paths to successfully map the full search area with sufficient loop closure to mesh maps. 
 
-	\item Implement the solution in hardware on quadrotor UAVs to simultaneously explore and map a GPS denied environment
-	
-	\item Perform flight test demonstrations and gather test data to showcase the effectiveness of the solution that has been developed.
+	\item Implement the solution in hardware on a team of multirotor UAVs to simultaneously explore and map a GPS denied environment
+
 
 \end{itemize}
 
@@ -165,49 +170,22 @@ To successfully complete this proposed research, the following objectives will b
 To address the research, a multi-phase approach will be used. Research will commence by first setting up a simulation environment in ROS Gazebo to allow for frequent testing without needing to rely on hardware every step of the way. Once the environment is set up, the project will be broken into three milestone hardware demonstrations: 
 
 \subsection{Phase 1}
-The first demonstration will be flying a single UAV in a GPS-denied environment to collect data and map the area. To complete this demonstration, an algorithm will need to be developed or implemented to plan the path in 3D space based off of a CAD model or blueprints of the search area. This path will be adjusted when unexpected obstacles and changes from the initial plans are detected. Although using a good odometry algorithm is essential to the success of this project, there are other students who are focusing on that aspect. 
-
-Along with this phase, research will be done to determine the best mapping algorithm for this scenario. It will then be implemented on the UAV to map the environment. 
+The first demonstration will be flying a single UAV in a GPS-denied environment to collect data and map the area. To complete this demonstration, an algorithm will need to be developed or implemented to plan the path in 3D space based off of a CAD model, a pre-made map, or blueprints of the search area. This path will be adjusted when unexpected obstacles and changes from the initial plans are detected. Although using a good odometry algorithm is essential to the success of this project, there are other students who are focusing on that aspect. In this phase, research will be done to determine a functional mapping algorithm for this scenario. It will then be implemented on the UAV to map the environment. 
 
 \subsection{Phase 2}
-The second phase of the project will be to get a single UAV to fly multiple paths in the same environment. These paths will need to be optimized such that they cover the desired search area and overlap enough to provide sufficient loop closure to mesh the maps together in post processing. This is where the bulk of novel research will be done. As mentioned earlier, there has not been significant research done in the area of meshing maps from multiple UAVs into a single map. 
+The second phase of the project will be to get a single UAV to fly multiple paths in the same environment and mesh the maps into a single map. These paths will need to be optimized such that they cover the desired search area and overlap enough to provide sufficient loop closure to mesh the maps together in post processing. The goal of this optimization will be to generate flight paths for the UAV such that a sufficient map of the search area is created with the least amount of flight time possible. This phase will first be done with software simulation, then on hardware. This is where the bulk of novel research will be done. As mentioned earlier, because of the limited flight time of the multirotor UAVs, efficient flight paths will make the searching and mapping of large areas feasible.
 
 \subsection{Phase 3}
-The third and final phase of the project will be to get multiple UAVs flying simultaneously in the same environment and meshing the maps into a single map. This will require more effort on the path planning to make sure the paths can be flown simultaneously, then something clever will be done to make the map meshing as close to real time as possible. 
+The third and final phase of the project will be to get multiple UAVs flying simultaneously in the same environment and meshing the maps into a single map. This will require more effort on the path planning to make sure the paths can be flown simultaneously. Then the data will be sent to a more powerful off-board computer to make the map meshing as close to real time as possible. 
 
-%\begin{equation}
-%\eta_t = \cfrac{\dot W_c + \dot W_{fric}}{\dot m c_p \left[ 1 - \left( \cfrac{p_{t5}}{p_{t4}} \right)^\frac{\gamma - 1}{\gamma} \right]}
-%\label{eq:efficiency}
-%\end{equation}
-
-%Flack \cite{flack:2008fundamentals-of} presents a method to create a turbine map. Both turbine pressure ratio and efficiency can be expressed as functions of corrected mass flow and rotational speed as shown in Equations~\ref{pressure_ratio} and~\ref{efficiency_function}.
-%
-%\begin{equation}
-%\frac{p_{t4}}{p_{t5}} = \mathscr{F} \left\{ \frac{\dot m \sqrt{\theta_{t4}}}{\delta_{t4}}, \frac{N}{\sqrt{\theta_{t4}}} \right\} = \mathscr{F} \left\{ \dot m_{c4}, N_{c4} \right\}
-%\label{pressure_ratio}
-%\end{equation}
-%%
-%\begin{equation}
-%\eta = \mathscr{G} \left\{ \frac{\dot m \sqrt{\theta_{t4}}}{\delta_{t4}} , \frac{N}{\sqrt{\theta_{t4}}} \right\} = \mathscr{G} \left\{ \dot m_{c4}, N_{c4} \right\}
-%\label{efficiency_function}
-%\end{equation}
-%%
-%where
-%\[\delta_{t4} = p_{t4}/p_{stp}\]
-%and
-%\[\theta_{t4} = T_{t4}/T_{stp}\]
-%%
-%Lines of constant corrected speed and efficiency will then be plotted on an axis of pressure ratio versus corrected mass flow.
 
 \section{Anticipated Contributions}
 
-As a result of this research, there will be an improved method for exploring and mapping a GPS denied environment with multiple UAVs, by developing the method for meshing a single map from multiple smaller maps. This process will also be streamlined to allow for near real time use of the maps by first responders.  
-
-%  A direct comparison will be made between a steady and unsteady flow through an axial turbine without any bypass flow. This direct comparison has not been previously performed. Possible publications from this research include presenting at the ASME Turbo Expo, submitting to the ASME Journal of Turbomachinery, presenting at the AIAA Aerospace Science Meeting, or other conferences and journals. This research is sponsored by Innovative Scientific Solutions, Inc. through an Air Force contract.
+As a result of this research, there will be an improved method for exploring and mapping a GPS-denied environment with multiple UAVs, by developing the method for meshing a single map from multiple smaller maps. This process will also be streamlined to allow for near-real-time use of the maps by first responders.  
 
 \pagebreak
 
 \bibliographystyle{IEEEtran}
-\bibliography{Prospectus}
+\bibliography{library}
 
 \end{document}

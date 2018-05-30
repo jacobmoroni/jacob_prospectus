@@ -7,56 +7,91 @@ Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
-Database file #1: Prospectus.bib
-Repeated entry---line 83 of file Prospectus.bib
+Database file #1: library.bib
+Repeated entry---line 46 of file library.bib
+ : @inproceedings{Schmuck2017
+ :                           ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 120 of file library.bib
  : @inproceedings{Labbe2011a
  :                          ,
 I'm skipping whatever remains of this entry
-Warning--I didn't find a database entry for "Henry2010"
+Repeated entry---line 169 of file library.bib
+ : @article{Michael2012
+ :                     ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 198 of file library.bib
+ : @inproceedings{Schmuck2017
+ :                           ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 220 of file library.bib
+ : @inproceedings{Labbe2011a
+ :                          ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 233 of file library.bib
+ : @article{Hornung2013
+ :                     ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 261 of file library.bib
+ : @article{Wheeler2017
+ :                     ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 269 of file library.bib
+ : @inproceedings{Bryson2007
+ :                          ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 280 of file library.bib
+ : @article{Zou2013
+ :                 ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 297 of file library.bib
+ : @article{Labbe2013
+ :                   ,
+I'm skipping whatever remains of this entry
 -- IEEEtran.bst version 1.14 (2015/08/26) by Michael Shell.
 -- http://www.michaelshell.org/tex/ieeetran/bibtex/
 -- See the "IEEEtran_bst_HOWTO.pdf" manual for usage information.
 
 Done.
-You've used 6 entries,
+You've used 9 entries,
             4087 wiz_defined-function locations,
-            874 strings with 9099 characters,
-and the built_in function-call counts, 5862 in all, are:
-= -- 462
-> -- 169
-< -- 50
-+ -- 91
-- -- 31
-* -- 321
-:= -- 882
-add.period$ -- 14
-call.type$ -- 6
-change.case$ -- 6
-chr.to.int$ -- 117
-cite$ -- 6
-duplicate$ -- 390
-empty$ -- 429
-format.name$ -- 37
-if$ -- 1337
+            896 strings with 9810 characters,
+and the built_in function-call counts, 8846 in all, are:
+= -- 718
+> -- 229
+< -- 83
++ -- 127
+- -- 39
+* -- 474
+:= -- 1327
+add.period$ -- 21
+call.type$ -- 9
+change.case$ -- 9
+chr.to.int$ -- 195
+cite$ -- 9
+duplicate$ -- 588
+empty$ -- 647
+format.name$ -- 47
+if$ -- 2032
 int.to.chr$ -- 0
-int.to.str$ -- 6
-missing$ -- 73
-newline$ -- 53
-num.names$ -- 6
-pop$ -- 165
+int.to.str$ -- 9
+missing$ -- 104
+newline$ -- 68
+num.names$ -- 9
+pop$ -- 225
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 2
-skip$ -- 430
+skip$ -- 659
 stack$ -- 0
-substring$ -- 278
-swap$ -- 346
-text.length$ -- 11
+substring$ -- 463
+swap$ -- 530
+text.length$ -- 18
 text.prefix$ -- 0
 top$ -- 5
-type$ -- 6
+type$ -- 9
 warning$ -- 0
-while$ -- 26
-width$ -- 7
-write$ -- 99
-(There was 1 error message)
+while$ -- 41
+width$ -- 10
+write$ -- 139
+(There were 10 error messages)

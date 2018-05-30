@@ -29,6 +29,15 @@ D.~Wheeler, D.~Koch, J.~Jackson, G.~Ellingson, P.~Nyholm, T.~McLain, and
   \url{https://scholarsarchive.byu.edu/facpub/1962}
 \BIBentrySTDinterwordspacing
 
+\bibitem{Henry2010}
+\BIBentryALTinterwordspacing
+P.~Henry, M.~Krainin, E.~Herbst, X.~Ren, and D.~Fox, ``{RGB-D mapping: Using
+  Kinect-style depth cameras for dense 3D modeling of indoor environments},''
+  \emph{The International Journal of Robotics Research}, vol.~31, no.~5, pp.
+  647--663, 2010. [Online]. Available:
+  \url{http://journals.sagepub.com/doi/pdf/10.1177/0278364911434148}
+\BIBentrySTDinterwordspacing
+
 \bibitem{Hornung2013}
 \BIBentryALTinterwordspacing
 A.~Hornung, K.~M. Wurm, M.~Bennewitz, C.~Stachniss, and W.~Burgard, ``{OctoMap:
@@ -70,6 +79,22 @@ N.~Michael, S.~Shen, K.~Mohta, Y.~Mulgaonkar, V.~Kumar, K.~Nagatani, Y.~Okada,
   aerial robots},'' \emph{Journal of Field Robotics}, vol.~29, no.~5, pp.
   832--841, sep 2012. [Online]. Available:
   \url{http://doi.wiley.com/10.1002/rob.21436}
+\BIBentrySTDinterwordspacing
+
+\bibitem{Zou2013}
+\BIBentryALTinterwordspacing
+D.~Zou and P.~Tan, ``{CoSLAM: Collaborative visual SLAM in dynamic
+  environments},'' \emph{IEEE Transactions on Pattern Analysis and Machine
+  Intelligence}, vol.~35, no.~2, pp. 354--366, feb 2013. [Online]. Available:
+  \url{http://ieeexplore.ieee.org/document/6193110/}
+\BIBentrySTDinterwordspacing
+
+\bibitem{Schmuck2017}
+\BIBentryALTinterwordspacing
+P.~Schmuck, ``{Multi-UAV collaborative monocular SLAM},'' in \emph{Proceedings
+  - IEEE International Conference on Robotics and Automation}.\hskip 1em plus
+  0.5em minus 0.4em\relax IEEE, may 2017, pp. 3863--3870. [Online]. Available:
+  \url{http://ieeexplore.ieee.org/document/7989445/}
 \BIBentrySTDinterwordspacing
 
 \end{thebibliography}
