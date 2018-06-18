@@ -8,90 +8,106 @@ Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Database file #1: library.bib
-Repeated entry---line 46 of file library.bib
+Repeated entry---line 123 of file library.bib
  : @inproceedings{Schmuck2017
  :                           ,
 I'm skipping whatever remains of this entry
-Repeated entry---line 120 of file library.bib
+Repeated entry---line 165 of file library.bib
  : @inproceedings{Labbe2011a
  :                          ,
 I'm skipping whatever remains of this entry
-Repeated entry---line 169 of file library.bib
- : @article{Michael2012
- :                     ,
-I'm skipping whatever remains of this entry
-Repeated entry---line 198 of file library.bib
- : @inproceedings{Schmuck2017
- :                           ,
+Repeated entry---line 197 of file library.bib
+ : @article{Mangelson2018
+ :                       ,
 I'm skipping whatever remains of this entry
 Repeated entry---line 220 of file library.bib
- : @inproceedings{Labbe2011a
- :                          ,
+ : @inproceedings{Schmuck2017
+ :                           ,
 I'm skipping whatever remains of this entry
-Repeated entry---line 233 of file library.bib
+Repeated entry---line 251 of file library.bib
+ : @misc{Intel
+ :            ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 257 of file library.bib
+ : @misc{Slamtec
+ :              ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 263 of file library.bib
  : @article{Hornung2013
  :                     ,
 I'm skipping whatever remains of this entry
-Repeated entry---line 261 of file library.bib
- : @article{Wheeler2017
+Repeated entry---line 278 of file library.bib
+ : @inproceedings{Labbe2011a
+ :                          ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 291 of file library.bib
+ : @article{Michael2012
  :                     ,
 I'm skipping whatever remains of this entry
-Repeated entry---line 269 of file library.bib
+Repeated entry---line 306 of file library.bib
  : @inproceedings{Bryson2007
  :                          ,
 I'm skipping whatever remains of this entry
-Repeated entry---line 280 of file library.bib
- : @article{Zou2013
- :                 ,
-I'm skipping whatever remains of this entry
-Repeated entry---line 297 of file library.bib
+Repeated entry---line 317 of file library.bib
  : @article{Labbe2013
  :                   ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 334 of file library.bib
+ : @article{Wheeler2017
+ :                     ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 342 of file library.bib
+ : @misc{Velodyne
+ :               ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 348 of file library.bib
+ : @article{Zou2013
+ :                 ,
 I'm skipping whatever remains of this entry
 -- IEEEtran.bst version 1.14 (2015/08/26) by Michael Shell.
 -- http://www.michaelshell.org/tex/ieeetran/bibtex/
 -- See the "IEEEtran_bst_HOWTO.pdf" manual for usage information.
 
 Done.
-You've used 9 entries,
+You've used 14 entries,
             4087 wiz_defined-function locations,
-            896 strings with 9810 characters,
-and the built_in function-call counts, 8846 in all, are:
-= -- 718
-> -- 229
-< -- 83
-+ -- 127
-- -- 39
-* -- 474
-:= -- 1327
-add.period$ -- 21
-call.type$ -- 9
-change.case$ -- 9
+            924 strings with 10758 characters,
+and the built_in function-call counts, 11039 in all, are:
+= -- 891
+> -- 275
+< -- 86
++ -- 149
+- -- 50
+* -- 572
+:= -- 1727
+add.period$ -- 31
+call.type$ -- 14
+change.case$ -- 14
 chr.to.int$ -- 195
-cite$ -- 9
-duplicate$ -- 588
-empty$ -- 647
-format.name$ -- 47
-if$ -- 2032
+cite$ -- 14
+duplicate$ -- 770
+empty$ -- 841
+format.name$ -- 60
+if$ -- 2514
 int.to.chr$ -- 0
-int.to.str$ -- 9
-missing$ -- 104
-newline$ -- 68
-num.names$ -- 9
-pop$ -- 225
+int.to.str$ -- 14
+missing$ -- 144
+newline$ -- 93
+num.names$ -- 14
+pop$ -- 339
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 2
-skip$ -- 659
+skip$ -- 821
 stack$ -- 0
-substring$ -- 463
-swap$ -- 530
-text.length$ -- 18
+substring$ -- 472
+swap$ -- 642
+text.length$ -- 21
 text.prefix$ -- 0
 top$ -- 5
-type$ -- 9
+type$ -- 14
 warning$ -- 0
-while$ -- 41
-width$ -- 10
-write$ -- 139
-(There were 10 error messages)
+while$ -- 47
+width$ -- 16
+write$ -- 191
+(There were 14 error messages)
